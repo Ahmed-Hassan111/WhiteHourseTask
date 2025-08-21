@@ -101,7 +101,7 @@ namespace task.Areas.admin.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ActionName("Edit")]
-        public async Task<IActionResult> EditPost(int id, FooterInfo footerInfo, IFormFile LogoUrl)
+        public async Task<IActionResult> EditPost(int id, FooterInfo footerInfo, IFormFile? LogoPath)
         {
             if (id != footerInfo.Id)
             {
@@ -113,16 +113,16 @@ namespace task.Areas.admin.Controllers
                 return NotFound();
             }
 
-            if (LogoUrl != null && LogoUrl.Length > 0)
+            if (LogoPath != null && LogoPath.Length > 0)
             {
                 //file path
-                var fileName = Guid.NewGuid().ToString() + Path.GetExtension(LogoUrl.FileName);
+                var fileName = Guid.NewGuid().ToString() + Path.GetExtension(LogoPath.FileName);
                 //Save path
                 var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/uploads", fileName);
 
                 using (var stream = new FileStream(filePath, FileMode.Create))
                 {
-                    await LogoUrl.CopyToAsync(stream);
+                    await LogoPath.CopyToAsync(stream);
                 }
                 footerInfo.LogoUrl = "/uploads/" + fileName;
             }

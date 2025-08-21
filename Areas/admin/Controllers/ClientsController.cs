@@ -104,7 +104,7 @@ namespace task.Areas.admin.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        public async Task<IActionResult> Edit(int id, Client client, IFormFile? ImageUrl)
+        public async Task<IActionResult> Edit(int id, Client client, IFormFile? ImagePath)
         {
             if (id != client.Id)
             {
@@ -118,14 +118,14 @@ namespace task.Areas.admin.Controllers
             }
 
             // لو فيه صورة جديدة
-            if (ImageUrl != null && ImageUrl.Length > 0)
+            if (ImagePath != null && ImagePath.Length > 0)
             {
-                var fileName = Guid.NewGuid().ToString() + Path.GetExtension(ImageUrl.FileName);
+                var fileName = Guid.NewGuid().ToString() + Path.GetExtension(ImagePath.FileName);
                 var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/uploads", fileName);
 
                 using (var stream = new FileStream(filePath, FileMode.Create))
                 {
-                    await ImageUrl.CopyToAsync(stream);
+                    await ImagePath.CopyToAsync(stream);
                 }
 
                 client.ImageUrl = "/uploads/" + fileName;

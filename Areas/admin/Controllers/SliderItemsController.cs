@@ -106,7 +106,7 @@ namespace task.Areas.admin.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ActionName("Edit")]
-        public async Task<IActionResult> EditPost(int id, SliderItem sliderItem, IFormFile? ImageUrl)
+        public async Task<IActionResult> EditPost(int id, SliderItem sliderItem, IFormFile? ImagePath)
         {
             if (id != sliderItem.Id)
             {
@@ -118,14 +118,14 @@ namespace task.Areas.admin.Controllers
                 return NotFound();
             }
 
-            if (ImageUrl != null && ImageUrl.Length > 0)
+            if (ImagePath != null && ImagePath.Length > 0)
             {
-                var fileName = Guid.NewGuid().ToString() + Path.GetExtension(ImageUrl.FileName);
+                var fileName = Guid.NewGuid().ToString() + Path.GetExtension(ImagePath.FileName);
                 var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/uploads", fileName);
 
                 using (var stream = new FileStream(filePath, FileMode.Create))
                 {
-                    await ImageUrl.CopyToAsync(stream);
+                    await ImagePath.CopyToAsync(stream);
                 }
 
                 sliderItem.ImageUrl = "/uploads/" + fileName;

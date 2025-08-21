@@ -100,7 +100,7 @@ namespace task.Areas.admin.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ActionName("Edit")]
-        public async Task<IActionResult> Edit(int id, CounterItem counterItem, IFormFile? IconUrl)
+        public async Task<IActionResult> Edit(int id, CounterItem counterItem, IFormFile? IconPath)
         {
             if (id != counterItem.Id)
             {
@@ -113,14 +113,14 @@ namespace task.Areas.admin.Controllers
                 return NotFound();
             }
 
-            if (IconUrl != null && IconUrl.Length > 0)
+            if (IconPath != null && IconPath.Length > 0)
             {
-                var fileName = Guid.NewGuid().ToString() + Path.GetExtension(IconUrl.FileName);
+                var fileName = Guid.NewGuid().ToString() + Path.GetExtension(IconPath.FileName);
                 var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/uploads", fileName);
 
                 using (var stream = new FileStream(filePath, FileMode.Create))
                 {
-                    await IconUrl.CopyToAsync(stream);
+                    await IconPath.CopyToAsync(stream);
                 }
 
                 counterItem.IconUrl = "/uploads/" + fileName;

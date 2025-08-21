@@ -110,13 +110,36 @@ namespace task.Areas.admin.Controllers
             }
             return View(aboutSection);
         }
-        [HttpPost]
-        
-        public async Task<IActionResult> Edit(int id, [Bind("Id,LogoUrl,Description,ReadMoreLink")] AboutSection aboutSection)
+        [HttpPost]       
+        public async Task<IActionResult> Edit(int id, AboutSection aboutSection, IFormFile? LogoFile)
         {
             if (id != aboutSection.Id)
             {
                 return NotFound();
+            }
+
+            var existingClient = await _context.AboutSections.AsNoTracking().FirstOrDefaultAsync(c => c.Id == id);
+            if (existingClient == null)
+            {
+                return NotFound();
+            }
+
+            if (LogoFile != null && LogoFile.Length > 0)
+            {
+                var fileName = Guid.NewGuid().ToString() + Path.GetExtension(LogoFile.FileName);
+                var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/uploads", fileName);
+
+                using (var stream = new FileStream(filePath, FileMode.Create))
+                {
+                    await LogoFile.CopyToAsync(stream);
+                }
+
+                aboutSection.LogoUrl = "/uploads/" + fileName;
+            }
+            else
+            {
+                // خليه يحتفظ بالصورة القديمة
+                aboutSection.LogoUrl = existingClient.LogoUrl;
             }
 
             if (ModelState.IsValid)
