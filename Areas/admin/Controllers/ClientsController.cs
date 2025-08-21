@@ -1,0 +1,200 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
+using task.Data;
+using task.Models;
+
+namespace task.Areas.admin.Controllers
+{
+    [Area("admin")]
+
+    public class ClientsController : Controller
+    {
+        private readonly AppDbContext _context;
+
+        public ClientsController(AppDbContext context)
+        {
+            _context = context;
+        }
+
+        // GET: admin/Clients
+        public async Task<IActionResult> Index()
+        {
+            return View(await _context.Clients.ToListAsync());
+        }
+
+        // GET: admin/Clients/Details/5
+        public async Task<IActionResult> Details(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var client = await _context.Clients
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (client == null)
+            {
+                return NotFound();
+            }
+
+            return View(client);
+        }
+
+        // GET: admin/Clients/Create
+        [HttpGet]
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+        // POST: admin/Clients/Create
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]       
+        public async Task<IActionResult> Create(Client client, IFormFile ImageUrl)
+        {
+            if (ImageUrl != null && ImageUrl.Length > 0)
+            {
+                // file path
+                var fileName = Guid.NewGuid().ToString() + Path.GetExtension(ImageUrl.FileName);
+
+                // file save
+                var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/uploads", fileName);
+
+                using (var stream = new FileStream(filePath, FileMode.Create))
+                {
+                    await ImageUrl.CopyToAsync(stream);
+                }
+
+
+                client.ImageUrl = "/uploads/" + fileName;
+            }
+            if (ModelState.IsValid)
+            {
+                _context.Add(client);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+            return View(client);
+        }
+
+        // GET: admin/Clients/Edit/5
+        [HttpGet]
+        public async Task<IActionResult> Edit(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var client = await _context.Clients.FindAsync(id);
+            if (client == null)
+            {
+                return NotFound();
+            }
+            return View(client);
+        }
+
+        // POST: admin/Clients/Edit/5
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        public async Task<IActionResult> Edit(int id, Client client, IFormFile? ImageUrl)
+        {
+            if (id != client.Id)
+            {
+                return NotFound();
+            }
+
+            var existingClient = await _context.Clients.AsNoTracking().FirstOrDefaultAsync(c => c.Id == id);
+            if (existingClient == null)
+            {
+                return NotFound();
+            }
+
+            // لو فيه صورة جديدة
+            if (ImageUrl != null && ImageUrl.Length > 0)
+            {
+                var fileName = Guid.NewGuid().ToString() + Path.GetExtension(ImageUrl.FileName);
+                var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/uploads", fileName);
+
+                using (var stream = new FileStream(filePath, FileMode.Create))
+                {
+                    await ImageUrl.CopyToAsync(stream);
+                }
+
+                client.ImageUrl = "/uploads/" + fileName;
+            }
+            else
+            {
+                // خليه يحتفظ بالصورة القديمة
+                client.ImageUrl = existingClient.ImageUrl;
+            }
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    _context.Update(client);
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!ClientExists(client.Id))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+                return RedirectToAction(nameof(Index));
+            }
+            return View(client);
+        }
+
+
+        // GET: admin/Clients/Delete/5
+        public async Task<IActionResult> Delete(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var client = await _context.Clients
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (client == null)
+            {
+                return NotFound();
+            }
+
+            return View(client);
+        }
+
+        // POST: admin/Clients/Delete/5
+        [HttpPost, ActionName("Delete")]
+        public async Task<IActionResult> DeleteConfirmed(int id)
+        {
+            var client = await _context.Clients.FindAsync(id);
+            if (client != null)
+            {
+                _context.Clients.Remove(client);
+            }
+
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
+
+        private bool ClientExists(int id)
+        {
+            return _context.Clients.Any(e => e.Id == id);
+        }
+    }
+}

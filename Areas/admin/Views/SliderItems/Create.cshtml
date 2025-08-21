@@ -1,0 +1,68 @@
+﻿@model task.Models.SliderItem
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>SliderItem</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="ImageUrl" class="control-label"></label>
+                <input type="file" asp-for="ImageUrl" class="form-control" />
+                <span asp-validation-for="ImageUrl" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Title" class="control-label"></label>
+                <input asp-for="Title" class="form-control" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SubTitle" class="control-label"></label>
+                <input asp-for="SubTitle" class="form-control" />
+                <span asp-validation-for="SubTitle" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Orientation" class="control-label"></label>
+                <input asp-for="Orientation" class="form-control" />
+                <span asp-validation-for="Orientation" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Slice1Rotation" class="control-label"></label>
+                <input asp-for="Slice1Rotation" class="form-control" />
+                <span asp-validation-for="Slice1Rotation" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Slice2Rotation" class="control-label"></label>
+                <input asp-for="Slice2Rotation" class="form-control" />
+                <span asp-validation-for="Slice2Rotation" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Slice1Scale" class="control-label"></label>
+                <input asp-for="Slice1Scale" class="form-control" />
+                <span asp-validation-for="Slice1Scale" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Slice2Scale" class="control-label"></label>
+                <input asp-for="Slice2Scale" class="form-control" />
+                <span asp-validation-for="Slice2Scale" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,30 @@
+﻿@model task.Models.AboutSection
+@{
+    ViewData["Title"] = "تعديل";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2 class="mb-4">@ViewData["Title"]</h2>
+
+<form asp-action="Edit" method="post">
+    <input type="hidden" asp-for="Id" />
+    <div class="form-group">
+        <label asp-for="LogoUrl" class="control-label"></label>
+        <input asp-for="LogoUrl" class="form-control" />
+        <span asp-validation-for="LogoUrl" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Description" class="control-label"></label>
+        <textarea asp-for="Description" class="form-control"></textarea>
+        <span asp-validation-for="Description" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="ReadMoreLink" class="control-label"></label>
+        <input asp-for="ReadMoreLink" class="form-control" />
+        <span asp-validation-for="ReadMoreLink" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <input type="submit" value="حفظ" class="btn btn-custom" />
+        <a asp-action="Index" class="btn btn-secondary">رجوع</a>
+    </div>
+</form>

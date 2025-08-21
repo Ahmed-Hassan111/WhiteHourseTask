@@ -1,0 +1,392 @@
+﻿@model task.Models.HomeViewModel
+
+<!DOCTYPE html>
+<html lang="ar">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>وايت هورس للاعلان</title>
+    <link rel="stylesheet" href="~/include/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/include/css/bootstrap-rtl.min.css">
+    <link rel="shortcut icon" href="~/images/logo-icon.png" type="image/x-icon">
+    <link rel="stylesheet" href="~/include/css/all.min.css">
+    <link rel="stylesheet" href="~/include/css/animate.css">
+    <link rel="stylesheet" href="~/include/css/hover-min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="~/include/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="~/include/css/owl.theme.default.min.css">
+    <!-----------------sider4------------------->
+    <link rel="stylesheet" type="text/css" href="~/include/css/slider-style.css" />
+    <link rel="stylesheet" type="text/css" href="~/include/css/custom.css" />
+    <script type="text/javascript" src="~/include/js/modernizr.custom.79639.js"></script>
+    <!-----------------sider4------------------->
+    <link href="~/include/css/imagehover.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="~/include/call-styles.css">
+
+    <script src="~/include/js/counter-ajex.js"></script>
+
+    <script>
+        jQuery(document).ready(function ($) {
+            $('.counter').counterUp({
+                delay: 10,
+                time: 2000
+            });
+        });
+    </script>
+</head>
+
+<body style="background-image:linear-gradient(rgb(255 255 255 / 92%), rgb(255 255 255 / 93%)), url(~/images/Lovepik_com-401594216-memphis-style-geometric-pattern-shading.jpg);">
+
+    <div class="loading-page">
+        <div class="loading-container">
+            <img src="~/images/logo.png" alt="" class="laoding-img">
+            <div class="loading-text">
+                <span>L</span>
+                <span>O</span>
+                <span>A</span>
+                <span>D</span>
+                <span>I</span>
+                <span>N</span>
+                <span>G</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="first-nav">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-md-12 m-auto">
+                    <div class="social-media">
+                        <ul>
+                            <li><a href="@Model.Footer.Facebook" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook-f"></i></a></li>
+                            <li><a href="@Model.Footer.Twitter" target="_blank" rel="noopener noreferrer"><i class="fab fa-twitter"></i></a></li>
+                            <li><a href="@Model.Footer.Instagram" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a></li>
+                            <li><a href="@Model.Footer.Linkedin" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin-in"></i></a></li>
+                            <li class="phone-icon"><a href="tel:@Model.Footer.Phone"><i class="fas fa-phone-alt"></i>@Model.Footer.Phone</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-nav">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-md-12 m-auto">
+                    <nav class="navbar navbar-expand-lg navbar-light">
+                        <a class="navbar-brand" href="/"><img src="@Model.Footer.LogoUrl" alt="" class="logo"></a>
+                        <div class="navbar-toggler" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                            <i class="fas fa-bars"></i>
+                        </div>
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <ul class="navbar-nav mr-auto">
+                                <li class="nav-item active">
+                                    <a class="nav-link" href="/">الرئيسية</a>
+                                </li>
+                                <li class="nav-item hvr-underline-from-right">
+                                    <a class="nav-link" href="/about">من نحن</a>
+                                </li>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle hvr-underline-from-right" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        خدماتنا
+                                    </a>
+                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                        @foreach (var service in Model.Services)
+                                        {
+                                            <a class="dropdown-item" href="@service.ReadMoreLink">@service.Title</a>
+                                        }
+                                    </div>
+                                </li>
+                                <li class="nav-item hvr-underline-from-right">
+                                    <a class="nav-link" href="/projects">مشاريعنا</a>
+                                </li>
+                                <li class="nav-item hvr-underline-from-right">
+                                    <a class="nav-link" href="/contact">تواصل معنا</a>
+                                </li>
+                                <!-- إضافة زر/أيقونة للـ Admin -->
+                                <li class="nav-item hvr-underline-from-right">
+                                    <a class="nav-link" asp-area="admin" asp-controller="AdminDashboard" asp-action="Index">
+                                        <i class="fas fa-lock"></i> لوحة التحكم
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!---------------------------------slider4-section (kariem)---------------------------------------->
+    <div class="containe demo-2 slider-4">
+        <div id="slider" class="sl-slider-wrapper">
+            <div class="sl-slider">
+                @foreach (var slider in Model.Sliders)
+                {
+                    <div class="sl-slide" data-orientation="@slider.Orientation" data-slice1-rotation="@slider.Slice1Rotation" data-slice2-rotation="@slider.Slice2Rotation" data-slice1-scale="@slider.Slice1Scale" data-slice2-scale="@slider.Slice2Scale">
+                        <div class="sl-slide-inner">
+                            <div class="bg-img" style="background-image: url('@slider.ImageUrl');"></div>
+                            <blockquote>
+                                <p>@slider.Title</p>
+                                <cite>@slider.SubTitle</cite>
+                            </blockquote>
+                        </div>
+                    </div>
+                }
+            </div>
+            <nav id="nav-dots" class="nav-dots">
+                @for (int i = 0; i < Model.Sliders.Count; i++)
+                {
+                    <span class="@(i == 0 ? "nav-dot-current" : "")"></span>
+                }
+            </nav>
+        </div>
+    </div>
+    <!---------------------------------slider4-section (kariem)---------------------------------------->
+
+    <div class="about-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-md-9 m-auto">
+                    <div class="row">
+                        <div class="col-12 col-md-5 bor-right">
+                            <img src="@Model.About.LogoUrl" alt="" srcset="">
+                        </div>
+                        <div class="col-12 col-md-7">
+                            <div class="about-data">
+                                <p>@Model.About.Description <a href="@Model.About.ReadMoreLink">قراءة المزيد ...</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="counter-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-md-11 m-auto">
+                    <div class="row">
+                        @foreach (var counter in Model.Counters)
+                        {
+                            <div class="col-10 col-md-6 col-lg-4 m-auto">
+                                <div class="counter-item">
+                                    <div class="row">
+                                        <div class="col-5 col-md-4 col-edit">
+                                            <div class="counter-item-icon" style="background-image: url('@counter.IconUrl');">
+                                                <img src="~/images/blank1-1.png" alt="" class="w-100">
+                                            </div>
+                                        </div>
+                                        <div class="col-7 col-md-8 col-edit">
+                                            <div class="counter-d">
+                                                @if (counter.HasPlus) { <span>+</span> }
+                                                <h4 class="counter">@counter.Number</h4>
+                                                @if (counter.HasPercentage) { <span>%</span> }
+                                                <h4>@counter.Title</h4>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!---------------------------golden-sans---------------------------------->
+    <div class="plugin-8 qq">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12 col-md-10 m-auto">
+                    <div class="row">
+                        <div class="col-12 col-md-9 m-auto">
+                            <div class="sec-head">
+                                <h3>خدماتنا</h3>
+                                <p>هنالك العديد من الأنواع المتوفرة لنصوص لوريم إيبسوم، ولكن الغالبية تم تعديلها بشكل ما عبر إدخال بعض النوادر أو الكلمات العشوائية إلى النص...</p>
+                            </div>
+                        </div>
+                        @foreach (var service in Model.Services)
+                        {
+                            <div class="col-12 col-md-6 col-lg-4">
+                                <a href="@service.ReadMoreLink">
+                                    <div class="demo">
+                                        <figure class="imghvr-flip-diag-1" style="background-image: url('@service.ImageUrl');">
+                                            <img src="~/images/blank2-1.png" alt="example-image">
+                                            <h1 class="title">@service.Title</h1>
+                                            <figcaption>
+                                                <h1>@service.Title</h1>
+                                                <p>@service.Description <span>قراءة المزيد ...</span></p>
+                                            </figcaption>
+                                        </figure>
+                                    </div>
+                                </a>
+                            </div>
+                        }
+                        <div class="col-12">
+                            <div class="more">
+                                <a href="/all-services" class="btn btn-primary hvr-bounce-to-left">معرفة المزيد</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!---------------------------golden-sans---------------------------------->
+
+    <!-------------------------------client-section-------------------------------------->
+    <div class="clients-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="sec-head">
+                        <h3>عملائنا</h3>
+                        <p>هنالك العديد من الأنواع المتوفرة لنصوص لوريم إيبسوم، ولكن الغالبية تم تعديلها بشكل ما عبر إدخال بعض النوادر أو الكلمات العشوائية إلى النص...</p>
+                    </div>
+                </div>
+                <div class="col-12 col-md-10 m-auto">
+                    <div id="products-carousel2" class="owl-carousel owl-theme">
+                        @foreach (var client in Model.Clients)
+                        {
+                            <div class="project-item">
+                                <div class="brand-img" style="background-image: url('@client.ImageUrl');">
+                                    <img src="~/images/blank1-1.png" alt="" srcset="">
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-------------------------------client-section-------------------------------------->
+
+    <!----------------------------footer ------------------------------->
+    <div class="all-footer">
+        <div class="mega-footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 col-md-12 m-auto brder-btm">
+                        <div class="row">
+                            <div class="col-12 col-md-5">
+                                <div class="megafooter-box">
+                                    <img src="@Model.Footer.LogoUrl" alt="" srcset="" class="logo-footer">
+                                    <p>@Model.Footer.Description <a href="http://">قراءة المزيد ...</a></p>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-3">
+                                <div class="megafooter-box mr-top">
+                                    <div class="mega-footer-h1">وسائل التواصل</div>
+                                    <ul class="contact-details">
+                                        <li><i class="fa fa-phone"></i><a href="tel:@Model.Footer.Phone"><h6>@Model.Footer.Phone</h6></a></li>
+                                        <li><a href="mailto:@Model.Footer.Email"><i class="fas fa-envelope"></i>@Model.Footer.Email</a></li>
+                                        <li><i class="fa fa-map-marker"></i>@Model.Footer.Address</li>
+                                        <li>
+                                            <div class="social-media">
+                                                <ul>
+                                                    <li><a href="@Model.Footer.Facebook"><i class="fab fa-facebook-f"></i></a></li>
+                                                    <li><a href="@Model.Footer.Twitter"><i class="fab fa-twitter"></i></a></li>
+                                                    <li><a href="@Model.Footer.Instagram"><i class="fab fa-instagram"></i></a></li>
+                                                    <li><a href="@Model.Footer.Linkedin"><i class="fab fa-linkedin-in"></i></a></li>
+                                                </ul>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-4">
+                                <div class="megafooter-box mr-top">
+                                    <div class="mega-footer-h1">موقعنا</div>
+                                    <iframe src="@Model.Footer.GoogleMapEmbedUrl" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="comp">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12 col-md-6">
+                        <h6>جميع الحقوق محفوظة  وايت هورس 2022</h6>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <h6>Powered by : <a href="http://www.ideaworldweb.com/" target="_blank">IdeaWorldWeb</a></h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!----------------------------footer ------------------------------->
+
+    <div id="div_whats_fixed" class="whats-icon"><a href="https://wa.me/+201067933544?text=مرحبا بك فى شركة وايت هورس" title="WhatsApp" target="_blank"><i class="fab fa-whatsapp"></i></a></div>
+    <div class="move-top">
+        <i class="fas fa-angle-up"></i>
+    </div>
+
+    <script src="~/include/js/counter-js.js"></script>
+    <script src="~/include/js/jquery.counterup.min.js"></script>
+    <script src="~/include/js/popper.js"></script>
+    <script src="~/include/js/jquery-3.4.1.min.js"></script>
+    <script src="~/include/js/bootstrap.min.js"></script>
+    <script src="~/include/js/wow.min.js"></script>
+    <script src="~/include/js/owl.carousel.js"></script>
+    <script src="~/include/js/idea-script.js"></script>
+    <script>new WOW().init()</script>
+    <script type="text/javascript" src="~/include/js/jquery.ba-cond.min.js"></script>
+    <script type="text/javascript" src="~/include/js/jquery.slitslider.js"></script>
+
+    <script type="text/javascript">
+        $(function () {
+            var Page = (function () {
+                var $nav = $('#nav-dots > span'),
+                    slitslider = $('#slider').slitslider({
+                        onBeforeChange: function (slide, pos) {
+                            $nav.removeClass('nav-dot-current');
+                            $nav.eq(pos).addClass('nav-dot-current');
+                        }
+                    }),
+                    init = function () {
+                        initEvents();
+                    },
+                    initEvents = function () {
+                        $nav.each(function (i) {
+                            $(this).on('click', function (event) {
+                                var $dot = $(this);
+                                if (!slitslider.isActive()) {
+                                    $nav.removeClass('nav-dot-current');
+                                    $dot.addClass('nav-dot-current');
+                                }
+                                slitslider.jump(i + 1);
+                                return false;
+                            });
+                        });
+                    };
+                return { init: init };
+            })();
+            Page.init();
+        });
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            $("#products-carousel2").owlCarousel({
+                margin: 30,
+                autoplay: true,
+                loop: true,
+                rtl: true,
+                navText: ["<i class='fa fa-chevron-left'></i>", "<i class='fa fa-chevron-right'></i>"],
+                responsive: { 0: { items: 1 }, 400: { items: 2 }, 600: { items: 3 }, 1000: { items: 3 }, 1300: { items: 5 } }
+            });
+        });
+    </script>
+</body>
+</html>

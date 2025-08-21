@@ -1,0 +1,38 @@
+﻿@model task.Models.AboutSection
+@{
+    ViewData["Title"] = "حذف";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2 class="mb-4">@ViewData["Title"]</h2>
+
+<h3>هل أنت متأكد أنك تريد حذف هذا العنصر؟</h3>
+<div>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.LogoUrl)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.LogoUrl)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ReadMoreLink)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ReadMoreLink)
+        </dd>
+    </dl>
+
+    <form asp-action="Delete" method="post">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="حذف" class="btn btn-danger" />
+        <a asp-action="Index" class="btn btn-secondary">الغاء</a>
+    </form>
+</div>

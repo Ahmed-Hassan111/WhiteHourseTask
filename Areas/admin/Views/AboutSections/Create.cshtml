@@ -1,0 +1,29 @@
+﻿@model task.Models.AboutSection
+@{
+    ViewData["Title"] = "إضافة";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2 class="mb-4">@ViewData["Title"]</h2>
+
+<form asp-action="Create" method="post">
+    <div class="form-group">
+        <label asp-for="LogoUrl" class="control-label">اختر شعار</label>
+        <input asp-for="LogoUrl" type="file" class="form-control-file" />
+        <span asp-validation-for="LogoUrl" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Description" class="control-label"></label>
+        <textarea asp-for="Description" class="form-control"></textarea>
+        <span asp-validation-for="Description" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="ReadMoreLink" class="control-label"></label>
+        <input asp-for="ReadMoreLink" class="form-control" />
+        <span class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <input type="submit" value="حفظ" class="btn btn-custom" />
+        <a asp-action="Index" class="btn btn-secondary">رجوع</a>
+    </div>
+</form>

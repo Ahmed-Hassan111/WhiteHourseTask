@@ -1,0 +1,66 @@
+﻿@model task.Models.SliderItem
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>SliderItem</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.ImageUrl)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ImageUrl)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.SubTitle)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.SubTitle)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Orientation)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Orientation)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Slice1Rotation)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Slice1Rotation)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Slice2Rotation)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Slice2Rotation)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Slice1Scale)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Slice1Scale)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Slice2Scale)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Slice2Scale)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
