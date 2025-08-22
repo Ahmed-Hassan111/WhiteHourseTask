@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+﻿@* <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8" />
@@ -36,5 +36,163 @@
     </div>
     <script src="/js/jquery-3.4.1.min.js"></script>
     <script src="/js/bootstrap.min.js"></script>
+</body>
+</html> *@
+
+
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - وايت هورس</title>
+
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Cairo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="/css/AdminDashboard.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <div class="header">
+        <div class="container">
+            <div class="logo-section">
+                <div class="logo">
+                    <i class="fas fa-horse-head"></i>
+                </div>
+                <div>
+                    <h1 class="main-title">وايت هورس</h1>
+                    <p class="subtitle">لوحة التحكم الإدارية</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Dashboard -->
+    <div class="dashboard-container">
+        <!-- Dashboard Grid -->
+        <div class="dashboard-grid">
+            <!-- Slider Management -->
+            <a href="/admin/SliderItems" class="dashboard-card slider-card">
+                <div class="card-icon">
+                    <i class="fas fa-images"></i>
+                </div>
+                <h3 class="card-title">إدارة الشرائح</h3>
+                <p class="card-description">
+                    إدارة شرائح العرض الرئيسية، إضافة وتعديل الصور والنصوص المرافقة لها
+                </p>
+            </a>
+
+            <!-- About Section -->
+            <a href="/admin/AboutSections" class="dashboard-card about-card">
+                <div class="card-icon">
+                    <i class="fas fa-info-circle"></i>
+                </div>
+                <h3 class="card-title">قسم من نحن</h3>
+                <p class="card-description">
+                    تحديث معلومات الشركة، الرؤية والرسالة، وجميع التفاصيل التعريفية
+                </p>
+            </a>
+
+            <!-- Counter Section -->
+            <a href="/admin/CounterItems" class="dashboard-card counter-card">
+                <div class="card-icon">
+                    <i class="fas fa-chart-bar"></i>
+                </div>
+                <h3 class="card-title">العدادات والإحصائيات</h3>
+                <p class="card-description">
+                    إدارة الأرقام والإحصائيات المعروضة مثل عدد العملاء وسنوات الخبرة
+                </p>
+            </a>
+
+            <!-- Services -->
+            <a href="/admin/ServiceItems" class="dashboard-card services-card">
+                <div class="card-icon">
+                    <i class="fas fa-cogs"></i>
+                </div>
+                <h3 class="card-title">الخدمات المقدمة</h3>
+                <p class="card-description">
+                    إضافة وتعديل الخدمات التي تقدمها الشركة مع الأوصاف والأسعار
+                </p>
+            </a>
+
+            <!-- Clients -->
+            <a href="/admin/Clients" class="dashboard-card clients-card">
+                <div class="card-icon">
+                    <i class="fas fa-users"></i>
+                </div>
+                <h3 class="card-title">شركاء النجاح</h3>
+                <p class="card-description">
+                    إدارة شعارات العملاء والشركاء وعرض قصص النجاح والتوصيات
+                </p>
+            </a>
+
+            <!-- Footer -->
+            <a href="/admin/FooterInfoes" class="dashboard-card footer-card">
+                <div class="card-icon">
+                    <i class="fas fa-address-card"></i>
+                </div>
+                <h3 class="card-title">معلومات التواصل</h3>
+                <p class="card-description">
+                    تحديث بيانات التواصل، العنوان، أرقام الهواتف ومعلومات التذييل
+                </p>
+            </a>
+        </div>
+
+        <!-- Back Button -->
+        <div class="back-section">
+            <a href="/" class="back-btn">
+                <i class="fas fa-home"></i>
+                العودة للصفحة الرئيسية
+            </a>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // Add smooth scrolling and enhanced interactions
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add ripple effect on card click
+            const cards = document.querySelectorAll('.dashboard-card');
+
+            cards.forEach(card => {
+                card.addEventListener('click', function(e) {
+                    // Create ripple effect
+                    const ripple = document.createElement('div');
+                    ripple.style.position = 'absolute';
+                    ripple.style.borderRadius = '50%';
+                    ripple.style.background = 'rgba(255, 255, 255, 0.6)';
+                    ripple.style.transform = 'scale(0)';
+                    ripple.style.animation = 'ripple 0.6s linear';
+                    ripple.style.left = (e.clientX - card.getBoundingClientRect().left) + 'px';
+                    ripple.style.top = (e.clientY - card.getBoundingClientRect().top) + 'px';
+                    ripple.style.width = ripple.style.height = '20px';
+                    ripple.style.pointerEvents = 'none';
+
+                    card.style.position = 'relative';
+                    card.appendChild(ripple);
+
+                    setTimeout(() => {
+                        ripple.remove();
+                    }, 600);
+                });
+            });
+        });
+
+        // Add loading state simulation
+        window.addEventListener('load', function() {
+            document.body.classList.add('loaded');
+        });
+    </script>
 </body>
 </html>

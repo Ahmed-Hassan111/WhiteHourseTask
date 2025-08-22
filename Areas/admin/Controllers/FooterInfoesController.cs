@@ -52,8 +52,7 @@ namespace task.Areas.admin.Controllers
         }
 
         // POST: admin/FooterInfoes/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        
         [HttpPost]
         public async Task<IActionResult> Create(FooterInfo footerInfo, IFormFile LogoUrl)
         {
@@ -97,8 +96,6 @@ namespace task.Areas.admin.Controllers
         }
 
         // POST: admin/FooterInfoes/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ActionName("Edit")]
         public async Task<IActionResult> EditPost(int id, FooterInfo footerInfo, IFormFile? LogoPath)
@@ -128,7 +125,7 @@ namespace task.Areas.admin.Controllers
             }
             else
             {
-                // خليه يحتفظ بالصورة القديمة
+                
                 footerInfo.LogoUrl = existingClient.LogoUrl;
             }
 
