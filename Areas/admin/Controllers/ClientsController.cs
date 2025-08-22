@@ -53,8 +53,7 @@ namespace task.Areas.admin.Controllers
         }
 
         // POST: admin/Clients/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        
         [HttpPost]       
         public async Task<IActionResult> Create(Client client, IFormFile ImageUrl)
         {
@@ -101,8 +100,7 @@ namespace task.Areas.admin.Controllers
         }
 
         // POST: admin/Clients/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        
         [HttpPost]
         public async Task<IActionResult> Edit(int id, Client client, IFormFile? ImagePath)
         {
@@ -117,7 +115,7 @@ namespace task.Areas.admin.Controllers
                 return NotFound();
             }
 
-            // لو فيه صورة جديدة
+            
             if (ImagePath != null && ImagePath.Length > 0)
             {
                 var fileName = Guid.NewGuid().ToString() + Path.GetExtension(ImagePath.FileName);
@@ -132,7 +130,7 @@ namespace task.Areas.admin.Controllers
             }
             else
             {
-                // خليه يحتفظ بالصورة القديمة
+                
                 client.ImageUrl = existingClient.ImageUrl;
             }
 

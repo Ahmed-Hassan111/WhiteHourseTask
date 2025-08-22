@@ -52,8 +52,7 @@ namespace task.Areas.admin.Controllers
         }
 
         // POST: admin/ServiceItems/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        
         [HttpPost, ActionName("Create")]
         public async Task<IActionResult> CreatePost(ServiceItem serviceItem, IFormFile ImageUrl)
         {
@@ -100,8 +99,7 @@ namespace task.Areas.admin.Controllers
         }
 
         // POST: admin/ServiceItems/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        
         [HttpPost]
         public async Task<IActionResult> Edit(int id, ServiceItem serviceItem, IFormFile? ImagePath)
         {

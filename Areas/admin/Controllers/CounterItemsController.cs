@@ -52,8 +52,7 @@ namespace task.Areas.admin.Controllers
         }
 
         // POST: admin/CounterItems/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        
         [HttpPost]
         public async Task<IActionResult> Create(CounterItem counterItem, IFormFile IconUrl)
         {
@@ -96,8 +95,7 @@ namespace task.Areas.admin.Controllers
             return View(counterItem);
         }
         // POST: admin/CounterItems/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        
         [HttpPost]
         [ActionName("Edit")]
         public async Task<IActionResult> Edit(int id, CounterItem counterItem, IFormFile? IconPath)
@@ -127,7 +125,7 @@ namespace task.Areas.admin.Controllers
             }
             else
             {
-                // خليه يحتفظ بالصورة القديمة
+                
                 counterItem.IconUrl = existingClient.IconUrl;
             }
 

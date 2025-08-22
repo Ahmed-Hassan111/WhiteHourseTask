@@ -172,7 +172,7 @@ namespace task.Areas.admin.Controllers
 
         // POST: admin/FooterInfoes/Delete/5
         [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
+        
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var footerInfo = await _context.FooterInfos.FindAsync(id);

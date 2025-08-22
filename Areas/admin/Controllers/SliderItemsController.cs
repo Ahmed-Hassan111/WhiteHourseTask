@@ -51,8 +51,7 @@ namespace task.Areas.admin.Controllers
         }
 
         // POST: admin/SliderItems/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        
         [HttpPost]
         public async Task<IActionResult> Create(SliderItem sliderItem, IFormFile ImageUrl)
         {
@@ -102,8 +101,7 @@ namespace task.Areas.admin.Controllers
         }
 
         // POST: admin/SliderItems/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        
         [HttpPost]
         [ActionName("Edit")]
         public async Task<IActionResult> EditPost(int id, SliderItem sliderItem, IFormFile? ImagePath)
@@ -132,7 +130,7 @@ namespace task.Areas.admin.Controllers
             }
             else
             {
-                // خليه يحتفظ بالصورة القديمة
+                
                 sliderItem.ImageUrl = existingClient.ImageUrl;
             }
             if (ModelState.IsValid)
@@ -178,8 +176,7 @@ namespace task.Areas.admin.Controllers
         }
 
         // POST: admin/SliderItems/Delete/5
-        [HttpPost, ActionName("Delete")]
-        
+        [HttpPost, ActionName("Delete")]       
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var sliderItem = await _context.Sliders.FindAsync(id);

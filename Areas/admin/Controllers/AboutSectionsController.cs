@@ -51,8 +51,7 @@ namespace task.Areas.admin.Controllers
         }
 
         // POST: admin/AboutSections/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        
         [HttpPost]
         public async Task<IActionResult> Create(AboutSection aboutSection, IFormFile LogoUrl)
         {
@@ -97,9 +96,7 @@ namespace task.Areas.admin.Controllers
         }
 
         // POST: admin/AboutSections/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        // GET: Admin/AboutSections/Edit/5
+        
         [HttpGet]
         public async Task<IActionResult> Edit(int id)
         {
@@ -138,7 +135,7 @@ namespace task.Areas.admin.Controllers
             }
             else
             {
-                // خليه يحتفظ بالصورة القديمة
+                
                 aboutSection.LogoUrl = existingClient.LogoUrl;
             }
 
