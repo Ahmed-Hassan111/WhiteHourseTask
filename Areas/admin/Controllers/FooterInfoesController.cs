@@ -54,18 +54,18 @@ namespace task.Areas.admin.Controllers
         // POST: admin/FooterInfoes/Create
         
         [HttpPost]
-        public async Task<IActionResult> Create(FooterInfo footerInfo, IFormFile LogoUrl)
+        public async Task<IActionResult> Create(FooterInfo footerInfo, IFormFile LogoFile)
         {
-            if (LogoUrl != null && LogoUrl.Length > 0)
+            if (LogoFile != null && LogoFile.Length > 0)
             {
                 //file path
-                var fileName = Guid.NewGuid().ToString() + Path.GetExtension(LogoUrl.FileName);
+                var fileName = Guid.NewGuid().ToString() + Path.GetExtension(LogoFile.FileName);
                 //Save path
                 var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/uploads", fileName);
 
                 using (var stream = new FileStream(filePath, FileMode.Create))
                 {
-                    await LogoUrl.CopyToAsync(stream);
+                    await LogoFile.CopyToAsync(stream);
                 }
                 footerInfo.LogoUrl = "/uploads/" + fileName;
             }

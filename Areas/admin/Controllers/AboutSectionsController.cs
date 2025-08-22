@@ -53,10 +53,10 @@ namespace task.Areas.admin.Controllers
         // POST: admin/AboutSections/Create
         
         [HttpPost]
-        public async Task<IActionResult> Create(AboutSection aboutSection, IFormFile LogoUrl)
+        public async Task<IActionResult> Create(AboutSection aboutSection, IFormFile LogoFile)
         {
             
-                if (LogoUrl != null && LogoUrl.Length > 0)
+                if (LogoFile != null && LogoFile.Length > 0)
                 {
                     var uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/uploads");
                     if (!Directory.Exists(uploadsFolder))
@@ -64,12 +64,12 @@ namespace task.Areas.admin.Controllers
                         Directory.CreateDirectory(uploadsFolder);
                     }
 
-                    var fileName = Guid.NewGuid().ToString() + Path.GetExtension(LogoUrl.FileName);
+                    var fileName = Guid.NewGuid().ToString() + Path.GetExtension(LogoFile.FileName);
                     var filePath = Path.Combine(uploadsFolder, fileName);
 
                     using (var stream = new FileStream(filePath, FileMode.Create))
                     {
-                        await LogoUrl.CopyToAsync(stream);
+                        await LogoFile.CopyToAsync(stream);
                     }
 
                     aboutSection.LogoUrl = "/uploads/" + fileName;

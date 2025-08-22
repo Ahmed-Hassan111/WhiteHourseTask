@@ -54,19 +54,19 @@ namespace task.Areas.admin.Controllers
         // POST: admin/ServiceItems/Create
         
         [HttpPost, ActionName("Create")]
-        public async Task<IActionResult> CreatePost(ServiceItem serviceItem, IFormFile ImageUrl)
+        public async Task<IActionResult> CreatePost(ServiceItem serviceItem, IFormFile ImagePath)
         {
-            if (ImageUrl != null && ImageUrl.Length > 0)
+            if (ImagePath != null && ImagePath.Length > 0)
             {
                 // file path
-                var fileName = Guid.NewGuid().ToString() + Path.GetExtension(ImageUrl.FileName);
+                var fileName = Guid.NewGuid().ToString() + Path.GetExtension(ImagePath.FileName);
 
                 // file save
                 var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/uploads", fileName);
 
                 using (var stream = new FileStream(filePath, FileMode.Create))
                 {
-                    await ImageUrl.CopyToAsync(stream);
+                    await ImagePath.CopyToAsync(stream);
                 }
 
 

@@ -54,18 +54,18 @@ namespace task.Areas.admin.Controllers
         // POST: admin/CounterItems/Create
         
         [HttpPost]
-        public async Task<IActionResult> Create(CounterItem counterItem, IFormFile IconUrl)
+        public async Task<IActionResult> Create(CounterItem counterItem, IFormFile IconPath)
         {
-            if(IconUrl != null && IconUrl.Length > 0)
+            if(IconPath != null && IconPath.Length > 0)
             {
                 //file path
-                var fileName = Guid.NewGuid().ToString() + Path.GetExtension(IconUrl.FileName);
+                var fileName = Guid.NewGuid().ToString() + Path.GetExtension(IconPath.FileName);
                 //Save path
                 var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/uploads", fileName);
 
                 using (var stream = new FileStream(filePath, FileMode.Create))
                 {
-                    await IconUrl.CopyToAsync(stream);
+                    await IconPath.CopyToAsync(stream);
                 }
                 counterItem.IconUrl = "/uploads/" + fileName;
             }
